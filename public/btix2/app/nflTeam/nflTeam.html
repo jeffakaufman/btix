@@ -1,0 +1,22 @@
+<div class="container">
+<h2>NFL Teams and Venues</h2>
+	<div class="row">
+		<div class="col s3"> 	
+			<input type='text'ng-model="searchText.nflTeamName" placeholder="find by team">
+		</div>
+		<div class="col offset-s6"> 	
+			<a class="waves-effect waves-light btn" ng-click="getJson()">Get JSON</a>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col s2" ng-click="predicate = 'nflTeam_id'; reverse=!reverse"><strong>ID</strong></div>
+		<div class="col s3" ng-click="predicate = 'nflTeamName'; reverse=!reverse"><strong>Team Name</strong></div>
+		<div class="col s5" ng-click="predicate = 'venue_name'; reverse=!reverse"><strong>Venue</strong></div>
+	</div>
+	<div class="row"  ng-repeat="nflTeam in nflTeams | orderBy:predicate:reverse| filter:searchText:strict">
+		<div class="col s2">{{nflTeam.nflTeam_id}}</div>
+		<div class="col s3">{{nflTeam.nflTeamName}}</div>
+		<div class="col s5">{{nflTeam.venue_name}}</div>
+	</div>
+</div>
