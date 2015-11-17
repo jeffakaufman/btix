@@ -12,6 +12,9 @@ angular.module('myApp.nflTeam', ['ngRoute','ui.materialize'])
  .controller('nflTeamCtrl', function($scope,$http,$location,$filter) {
  
       $scope.nflTeams = [];
+      $scope.includeID = true;
+      $scope.includeVenue = true;
+      $scope.filename = "default"
  
       $scope.init = function(){
         $http.get('/api/v1/nfl_team').success(function(data){
@@ -26,14 +29,22 @@ angular.module('myApp.nflTeam', ['ngRoute','ui.materialize'])
  
       $scope.init();
       $scope.getJson = function () {
-         $scope.savedJSON = angular.toJson($filter('filter')($scope.nflTeams, $scope.searchText));
-         
+         var teamList = angular.copy($scope.nflTeams);
+         for (var i=0; i < teamList.length; i++){
+            if (!$scope.includeID) {
+               delete teamList[i]['nflTeam_id'];
+            }
+               
+            if (!$scope.includeVenue) {
+               delete teamList[i]['venue_name'];
+            }
+         }
+         $scope.savedJSON = angular.toJson($filter('filter')(teamList, $scope.searchText));
          var blob = new Blob([$scope.savedJSON], {
             type: "text/html;charset=utf-8"
-        });
-        saveAs(blob, "nflTeams.json");
-         
-         
+         });
+         saveAs(blob, $scope.filename+'.json');
       };
-      
+     
     });
+    

@@ -2,17 +2,31 @@
 <h2>NFL Teams and Venues</h2>
 	<div class="row">
 		<div class="col s3"> 	
-			<input type='text'ng-model="searchText.nflTeamName" placeholder="find by team">
+			<input type='text' ng-model="searchText.nflTeamName" placeholder="Find By Name">
 		</div>
-		<div class="col offset-s6"> 	
+		<div class="col offset-s3 s3"> 	
+			<input type='text' ng-model="filename" placeholder="File Name">
+		</div>
+		<div class="col"> 	
 			<a class="waves-effect waves-light btn" ng-click="getJson()">Get JSON</a>
 		</div>
 	</div>
 	
 	<div class="row">
-		<div class="col s2" ng-click="predicate = 'nflTeam_id'; reverse=!reverse"><strong>ID</strong></div>
-		<div class="col s3" ng-click="predicate = 'nflTeamName'; reverse=!reverse"><strong>Team Name</strong></div>
-		<div class="col s5" ng-click="predicate = 'venue_name'; reverse=!reverse"><strong>Venue</strong></div>
+		<div class="col s2">
+			<strong ng-click="predicate = 'nflTeam_id'; reverse=!reverse">ID&nbsp;</strong>
+			<input type="checkbox" class="filled-in" id="includeID" ng-model="includeID" />
+			<label for="includeID">&nbsp;</label>
+		</div>
+		
+		<div class="col s3">
+			<strong ng-click="predicate = 'nflTeamName'; reverse=!reverse">Team Name</strong>
+		</div>
+		<div class="col s5">
+			<strong ng-click="predicate = 'venue_name'; reverse=!reverse">Venue</strong>
+			<input type="checkbox" class="filled-in" id="includeVenue" ng-model="includeVenue" />
+			<label for="includeVenue">&nbsp;</label>
+		</div>
 	</div>
 	<div class="row"  ng-repeat="nflTeam in nflTeams | orderBy:predicate:reverse| filter:searchText:strict">
 		<div class="col s2">{{nflTeam.nflTeam_id}}</div>
