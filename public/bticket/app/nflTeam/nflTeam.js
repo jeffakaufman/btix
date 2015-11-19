@@ -9,7 +9,7 @@ angular.module('myApp.nflTeam', ['ngRoute','ui.materialize'])
   });
 }])
 
- .controller('nflTeamCtrl', function($scope,$http,$location,$filter) {
+ .controller('nflTeamCtrl', function($scope,$http,$location,$filter,x2js) {
  
       $scope.nflTeams = [];
       $scope.includeID = true;
@@ -28,7 +28,7 @@ angular.module('myApp.nflTeam', ['ngRoute','ui.materialize'])
       }
  
       $scope.init();
-      $scope.getJson = function () {
+      $scope.getJson = function (filetype) {
          var teamList = angular.copy($scope.nflTeams);
          for (var i=0; i < teamList.length; i++){
             if (!$scope.includeID) {
@@ -40,10 +40,17 @@ angular.module('myApp.nflTeam', ['ngRoute','ui.materialize'])
             }
          }
          $scope.savedJSON = angular.toJson($filter('filter')(teamList, $scope.searchText));
-         var blob = new Blob([$scope.savedJSON], {
+         if (filetype == 'xml') {
+            var blob = new Blob([x2js.json2xml_str(JSON.parse($scope.savedJSON))], {
+               type: "text/html;charset=utf-8"
+            });
+         } else {
+            var blob = new Blob([$scope.savedJSON], {
             type: "text/html;charset=utf-8"
-         });
-         saveAs(blob, $scope.filename+'.json');
+         }); } 
+                
+         //console.log(x2js.json2xml_str(JSON.parse($scope.savedJSON) ));
+         saveAs(blob, $scope.filename+'.'+filetype);
       };
      
     });

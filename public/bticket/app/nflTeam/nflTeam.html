@@ -4,11 +4,14 @@
 		<div class="col s3"> 	
 			<input type='text' ng-model="searchText.nflTeamName" placeholder="Find By Name">
 		</div>
-		<div class="col offset-s3 s3"> 	
+		<div class="col offset-s2 s3"> 	
 			<input type='text' ng-model="filename" placeholder="File Name">
 		</div>
-		<div class="col"> 	
-			<a class="waves-effect waves-light btn" ng-click="getJson()">Get JSON</a>
+		<div class="col s2"> 	
+			<a class="waves-effect waves-light btn" ng-click="getJson('json')">JSON</a>
+		</div>
+		<div class="col s2"> 	
+			<a class="waves-effect waves-light btn" ng-click="getJson('xml')">XML</a>
 		</div>
 	</div>
 	

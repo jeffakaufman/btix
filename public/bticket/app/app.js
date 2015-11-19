@@ -5,7 +5,8 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.nflTeam',
   'myApp.view2',
-  'myApp.version'
+  'myApp.version',
+  'cb.x2js'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/nflTeam'});

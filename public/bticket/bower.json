@@ -13,6 +13,7 @@
     "html5-boilerplate": "~5.2.0",
     "angular-materialize": "*",
     "file-saver": "*",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-x2js": "~0.2.0"
   }
 }
