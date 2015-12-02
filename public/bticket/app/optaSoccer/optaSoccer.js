@@ -37,10 +37,10 @@ angular.module('myApp.optaSoccer', ['ngRoute','ui.materialize'])
          var playerList = angular.copy($scope.optaSoccerPlayers);
          for (var i=0; i < playerList.length; i++){
             if (!$scope.includeStats) {
-               delete playerList[i]['optaPlayerStats'];
-            } else {
-            	delete playerList[i]['shortStats'];
-            }
+            	playerList[i]['optaPlayerStats'] = playerList[i]['shortStats']
+            } 
+            delete playerList[i]['shortStats'];
+            
          }
          $scope.savedJSON = angular.toJson($filter('filter')(playerList, $scope.searchText));
          if (filetype == 'xml') {
