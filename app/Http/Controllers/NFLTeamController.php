@@ -11,21 +11,6 @@ use App\NFLTeam;
 
 class NFLTeamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-/*    public function index()
-    {
-        //
-        $nflTeams = NFLTeam::with(
-            array('NFLTeamVenue'=>function($query){
-                $query->select('id','name');
-            })
-            ) ->select('id', 'name', 'venue_id')->paginate(5);;
-        return \Response::json($this->transformCollection($nflTeams), 200);
-    }*/
     
     public function index(Request $request)
     {    
@@ -154,9 +139,6 @@ class NFLTeamController extends Controller
         //
     }
     private function transformCollection($nflTeams){
-    	//return array_map([$this, 'transform'], $nflTeams->toArray());
-    	
-    	
     	$nflTeamsArray = $nflTeams->toArray();
         return [
             'total' => $nflTeamsArray['total'],

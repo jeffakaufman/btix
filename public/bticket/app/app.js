@@ -4,7 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.nflTeam',
-  'myApp.view2',
+  'myApp.optaSoccer',
   'myApp.version',
   'cb.x2js'
 ]).

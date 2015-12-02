@@ -14,9 +14,27 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'api/v1'], function()
+{
+    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+    Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+});
+
 Route::group(['prefix' => 'api/v1'], function(){
 	Route::resource('nfl_team', 'NFLTeamController');
 });
 Route::group(['prefix' => 'api/v1'], function(){
 	Route::resource('nfl_team_venue', 'NFLTeamVenueController');
+});
+
+
+Route::group(['prefix' => 'api/v1'], function(){
+	Route::resource('opta_socplayer_stats', 'OptaSocplayerStatsController');
+});
+
+
+Route::group(['prefix' => 'api/v1'], function(){
+	Route::resource('talex_opta_player', 'TalexOptaPlayerController');
 });

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        User::create([                
+			'name' => "Jeff Kaufman",
+			'password' => bcrypt('test'),
+			'email' => "info@kaufmaninternational.com"
+            ]);
 
         Model::reguard();
     }

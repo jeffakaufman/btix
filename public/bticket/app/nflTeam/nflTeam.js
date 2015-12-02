@@ -49,7 +49,6 @@ angular.module('myApp.nflTeam', ['ngRoute','ui.materialize'])
             type: "text/html;charset=utf-8"
          }); } 
                 
-         //console.log(x2js.json2xml_str(JSON.parse($scope.savedJSON) ));
          saveAs(blob, $scope.filename+'.'+filetype);
       };
      
